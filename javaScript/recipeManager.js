@@ -1,10 +1,10 @@
 // create html
-const createRecipeHtml = (id, name, category, time, ingredients, instructions) => {
+const createRecipeHtml = (id, name, category, time, ingredients, instructions, image) => {
     const html =  
-        `<div class="recipe-set" data-id-number="${id}">
+        `<div class="recipe-set" data-id-number="${id}" name="${name}">
             <h4 class="time">${time}</h4>
             <div class="recipe-image-div">
-                <img class="recipe-image" src="images/sobaSalad.jpg" />
+                <img class="recipe-image" src="images/recipe-images/rhubarb-apple-crumble.jpg" />
             </div>
             <div class="recipe-card">
                 <h2 class="recipe-title text-center">${name}</h2>
@@ -26,51 +26,92 @@ const createRecipeHtml = (id, name, category, time, ingredients, instructions) =
     return html;
 };
 
-class TaskManager {
+//creating the category based html to go into primary tabs
+const createCategoryHtml = (category) => {
+    const lowerCategory = category.toLowerCase();
+    const tabHtml = 
+        `<button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, '${lowerCategory}')">${lowerCategory}</button>`;
+    return tabHtml;
+};
+
+//creating the category based html to go into secondary tabs
+const createNameHtml = (category, name) => {
+    const lowerName = name.toLowerCase();
+    const lowerCategory = category.toLowerCase();
+    const tabHtml = 
+        `<div id="${lowerCategory}" class="w3-container recipe-name w3-animate-left" style="display:none" onclick="openRecipe('${lowerName}')">
+        </div>`;
+    return tabHtml;
+};
+
+const addNameToList = (name) => {
+    const lowerName = name.toLowerCase();
+    const tabHtmlInnerHtml = `<h4>${lowerName}</h4>`;
+    return tabHtmlInnerHtml;
+};
+
+class RecipeManager {
     constructor(currentId = 0) {
         this.currentId = currentId;
-        this.tasks = [];
+        this.recipes = [];
+        this.tabs = [];
     }
-    addTask(name, category, time, ingredients, instructions) {
-        const task = {
+    addRecipe(name, category, time, ingredients, instructions, image) {
+        const recipe = {
             id: this.currentId++,
             name: name,
             category: category,
             time: time,
             ingredients: ingredients,
             instructions: instructions,
+            image: image,
         };
-        this.tasks.push(task);
-        //${status == 'Done' ? 'done' : ''} use ternery to push to category array instead? 
+        this.recipes.push(recipe);
     }
 
     //the method to render 
     render() {
-        const tasksHtmlList = [];
-        for (let i = 0; i < this.tasks.length; i++) {
-            const renderTask = this.tasks[i];
+        //iterating through categories and if category exists render secondary tab else make new category
+        // for (let i = 0; i < primaryTabsList.length; i++) {
+        //     const renderTabs = this.tabs[i];
 
-            const taskHtml = createRecipeHtml(
-                renderTask.id,
-                renderTask.name,
-                renderTask.category,
-                renderTask.time,
-                renderTask.ingredients,
-                renderTask.instructions
+        //     const recipeTabHtml = createCategoryHtml(
+        //         renderTabs.
+        //     );
+
+        //     const recipeHtml = recipeHtmlList.join("\n");
+        //     const recipeList = document.querySelector("#recipe-container");
+        //     recipeList.innerHTML = recipeHtml;
+        // }
+        
+        //rendering recipes
+        const recipeHtmlList = [];
+        // const primaryTabsList = [];
+        for (let i = 0; i < this.recipes.length; i++) {
+            const renderCard = this.recipes[i];
+
+            const recipeHtml = createRecipeHtml(
+                renderCard.id,
+                renderCard.name,
+                renderCard.category,
+                renderCard.time,
+                renderCard.ingredients,
+                renderCard.instructions,
+                renderCard.image
             );
-            tasksHtmlList.unshift(taskHtml);
+            recipeHtmlList.unshift(recipeHtml);
         }
 
-        const taskHtml = tasksHtmlList.join("\n");
-        const taskList = document.querySelector("#recipe-container");
-        taskList.innerHTML = taskHtml;
+        const recipeHtml = recipeHtmlList.join("\n");
+        const recipeList = document.querySelector("#recipe-container");
+        recipeList.innerHTML = recipeHtml;
     }
 
     //this method finds the id
     getTaskById(taskId) {
         let foundTask;
-        for (let i = 0; i < this.tasks.length; i++) {
-            let getTask = this.tasks[i];
+        for (let i = 0; i < this.recipes.length; i++) {
+            let getTask = this.recipes[i];
             if (getTask.id === taskId) {
                 foundTask = getTask;
             }
@@ -79,23 +120,23 @@ class TaskManager {
     }
 
     //delete method
-    deleteTask(taskId) {
+    deleteRecipe(taskId) {
             const newTasks = [];
-            for (let i = 0; i < this.tasks.length; i++) {
-                const task = this.tasks[i];
-                if (task.id !== taskId) {
-                    newTasks.push(task);
+            for (let i = 0; i < this.recipes.length; i++) {
+                const recipe = this.recipes[i];
+                if (recipe.id !== taskId) {
+                    newTasks.push(recipe);
                 }
             }
-            this.tasks = newTasks;
+            this.recipes = newTasks;
         }
 
         //   For local storage
     save() {
             // create a json stringfy 
-            const taskJson = JSON.stringify(this.tasks);
+            const recipeJson = JSON.stringify(this.recipes);
             // store json in local Storage
-            localStorage.setItem('task', taskJson);
+            localStorage.setItem('recipe', recipeJson);
             // convert id into string
             const currentId = String(this.currentId);
             // store Id in localstorage
@@ -104,10 +145,10 @@ class TaskManager {
 
         //This method loads the saved data
     load() {
-        if (localStorage.getItem('task')) {
-            //to get the task from local storage
-            const taskJson = localStorage.getItem('task');
-            this.tasks = JSON.parse(taskJson);
+        if (localStorage.getItem('recipe')) {
+            //to get the recipe from local storage
+            const recipeJson = localStorage.getItem('recipe');
+            this.recipes = JSON.parse(recipeJson);
 
         }
         if (localStorage.getItem('currentId')) {

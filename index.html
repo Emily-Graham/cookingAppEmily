@@ -28,18 +28,32 @@
         <div id="title">
             <h1  class="text-centered-div">Cook<br>Book<br>Nook.</h1>
         </div>
+        <!-- div for category tabs -->
         <div id="primary-tabs">
-            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'Desserts')">Desserts</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'Pasta')">Pasta</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'desserts')">desserts</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'entrees')">entrees</button>
+             <!-- <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'favourites')">favourites</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'pasta')">pasta</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'seafood')">seafood</button> -->
         </div>
     </nav>
     <div id="secondary-nav">
             <div id="blank"></div>
+            <!-- location to push secondary tabs -->
             <div id="secondary-tabs">
-                <div id="Desserts" class="w3-container recipe-name w3-animate-left" style="display:none">
-                    <h4>Recipe Name</h4>
+                <div id="desserts" class="w3-container recipe-name w3-animate-left" style="display:none">
+                    <h4>recipe name</h4>
                 </div>
-                <div id="Pasta" class="w3-container recipe-name w3-animate-left" style="display:none">
+                <div id="entrees" class="w3-container recipe-name w3-animate-left" style="display:none">
+                    <h4>Pasta Dish</h4>
+                </div>
+                <div id="favourites" class="w3-container recipe-name w3-animate-left" style="display:none">
+                    <h4>pasta Dish</h4>
+                </div>
+                <div id="pasta" class="w3-container recipe-name w3-animate-left" style="display:none" onclick="openRecipe(event, 'pesto')">
+                    <h4>pesto</h4>
+                </div>
+                <div id="seafood" class="w3-container recipe-name w3-animate-left" style="display:none">
                     <h4>Pasta Dish</h4>
                 </div>
             </div>
@@ -71,7 +85,14 @@
             </div>
             <div class="row" id="smallrow">
                 <div class="col-6">
-                    <input id="category-input" type="text" class="form-control" placeholder="Recipe Category *" />
+                    <input id="category-input" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Recipe category"/>
+                    <datalist id="datalistOptions">
+                        <option value="desserts">
+                        <option value="entrees">
+                        <option value="favourites">
+                        <option value="pasta">
+                        <option value="seafood">
+                    </datalist>
                     <span id="errMsgCategory" class="errorMsg" style="color: #C71717"></span>
                 </div>
                 <div class="col-6">
@@ -100,6 +121,13 @@
                     <button type="button" class="btn btn-success" onclick="addInstructions()">add</button>
                 </div>
             </div>
+            <!-- <span id="image-choice">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      <img class="radio-images" src="images/recipe-images/french-banana-waffles.jpg">
+                    </label>
+            </span> -->
             <button id="btnSub" type="button" class="btn btn-primary">
                 Add Recipe
             </button>
@@ -108,30 +136,6 @@
     
     <!-- div for recipe-sets -->
     <div id="recipe-container">
-        <!-- <div id="id_0" class="recipe-set">
-            <div class="recipe-image-div">
-                <img class="recipe-image" src="images/sobaSalad.jpg" />
-            </div>
-            <div class="recipe-card">
-                <h2 class="recipe-title text-center">Recipe Title Here</h2>
-                <h4 class="recipe-category text-center">Recipe Category Here</h4>
-                <br>
-                <h3 class="text-center">Ingredients</h3>
-                <ul class="ingredients">
-                    <li>300g butter</li>
-                    <li>1 cup sugar</li>
-                </ul>
-                <h3 class="text-center">Instructions</h3>
-                <ol class="instructions">
-                    <li>Chop the tomatoes</li>
-                    <li>Slice cheese</li>
-                    <li>Cut the lettuce</li>
-                </ol>
-                <div class="d-flex justify-content-end">
-                    <button class="delete-recipe">Delete</button>
-                </div>
-            </div>
-        </div> -->
     </div>    
 </body>
 </html>
