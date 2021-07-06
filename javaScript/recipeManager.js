@@ -27,12 +27,12 @@ const createRecipeHtml = (id, name, category, time, ingredients, instructions, i
 };
 
 //creating the category based html to go into primary tabs
-const createCategoryHtml = (category) => {
-    const lowerCategory = category.toLowerCase();
-    const tabHtml = 
-        `<button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, '${lowerCategory}')">${lowerCategory}</button>`;
-    return tabHtml;
-};
+// const createCategoryHtml = (category) => {
+//     const lowerCategory = category.toLowerCase();
+//     const tabHtml = 
+//         `<button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, '${lowerCategory}')">${lowerCategory}</button>`;
+//     return tabHtml;
+// };
 
 //creating the category based html to go into secondary tabs
 const createNameHtml = (category, name) => {
@@ -44,6 +44,7 @@ const createNameHtml = (category, name) => {
     return tabHtml;
 };
 
+//html to go into secondart tab list
 const addNameToList = (name) => {
     const lowerName = name.toLowerCase();
     const tabHtmlInnerHtml = `<h4>${lowerName}</h4>`;
@@ -56,7 +57,7 @@ class RecipeManager {
         this.recipes = [];
         this.tabs = [];
     }
-    addRecipe(name, category, time, ingredients, instructions, image) {
+    addRecipe(name, category, time, ingredients, instructions) {
         const recipe = {
             id: this.currentId++,
             name: name,
@@ -64,26 +65,12 @@ class RecipeManager {
             time: time,
             ingredients: ingredients,
             instructions: instructions,
-            image: image,
         };
         this.recipes.push(recipe);
     }
 
     //the method to render 
     render() {
-        //iterating through categories and if category exists render secondary tab else make new category
-        // for (let i = 0; i < primaryTabsList.length; i++) {
-        //     const renderTabs = this.tabs[i];
-
-        //     const recipeTabHtml = createCategoryHtml(
-        //         renderTabs.
-        //     );
-
-        //     const recipeHtml = recipeHtmlList.join("\n");
-        //     const recipeList = document.querySelector("#recipe-container");
-        //     recipeList.innerHTML = recipeHtml;
-        // }
-        
         //rendering recipes
         const recipeHtmlList = [];
         // const primaryTabsList = [];

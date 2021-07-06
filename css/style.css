@@ -51,15 +51,15 @@ body {
 #addRecipeBtn {
     font-family: 'Josefin Slab', serif !important;
     position: absolute;
-    top: 25px;
-    right:145px;
+    top: 70px;
+    right:213px;
     border: none !important;
     color: none !important;
     background-color: none !important;
 }
 button img {
-    width: 130px;
-    height: 130px;
+    width: 70px;
+    height: 70px;
 }
 /* Add Your Recipe Form Styling */
 #collapse-form {

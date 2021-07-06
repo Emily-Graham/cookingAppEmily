@@ -24,24 +24,17 @@ const addRecipeBtn = document.querySelector("#btnSub");
 //render variable 
 const recipeContainer = document.querySelector('#recipe-container');
 
-//category arrays
-const categoryArray = [];
-const desserts = [];
-const entrees = [];
-const favourites = [];
-
 //Opens up list of recipes under triggered category
 function openSecondaryTabs(evt, categoryName) {
     let openTabs = false;
-    let i, x, tablinks;
-    x = document.getElementsByClassName("recipe-name");
-    tablinks = document.getElementsByClassName("tablink");
+    const x = document.getElementsByClassName("recipe-name");
+    const tablinks = document.getElementsByClassName("tablink");
     //closes all tabs 
-    for (i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
     x[i].style.display = "none";
     }
     //unselects all tabs (removes red ribbon)
-    for (i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" selected-ribbon", ""); 
     }
     //displays the secondary tabs selected, adds red-ribbon class to primary tab
@@ -71,7 +64,7 @@ function openRecipe(recipeName) {
     const clickedRecipe = document.getElementsByName(recipeName);
     const x = document.getElementsByClassName('recipe-set');
     //closes all recipe cards 
-    for (i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
     //displays the recipe card selected
@@ -182,54 +175,63 @@ checkFormInput = (event) => {
         instructionsInput.value = "";
         errorExist = 0;
     }
-    
+
     //calling the addRecipe method
     if (errorExist == 0) {
-        //checking if new category must be made
-        if (primaryButtons.innerHTML == categoryInputValue.toLowerCase()) {
-            NewRecipe.addRecipe(
-                nameInput.value,
-                categoryInput.value,
-                timeInput.value,
-                ul.innerHTML,
-                ol.innerHTML
-            )
-            addNameToList(nameInputValue);
+            //checking if new category must be made
+            // if (primaryButtons.innerHTML == categoryInputValue.toLowerCase()) {
+            //     NewRecipe.addRecipe(
+            //         nameInput.value,
+            //         categoryInput.value,
+            //         timeInput.value,
+            //         ul.innerHTML,
+            //         ol.innerHTML
+            //     )
+            //     addNameToList(nameInputValue);
+            //     createNameHtml(categoryInputValue, nameInputValue);
 
-        } else { 
-            //make new category array and primary tabs
-            NewRecipe.addRecipe(
-                nameInput.value,
-                categoryInput.value,
-                timeInput.value,
-                ul.innerHTML,
-                ol.innerHTML
-            )
-            addNameToList(nameInputValue);
-            createCategoryHtml(categoryInputValue);
-            createNameHtml(categoryInputValue, nameInputValue);
-        }
+            // } else { 
+            //     //make new category array and primary tabs
+            //     NewRecipe.addRecipe(
+            //         nameInput.value,
+            //         categoryInput.value,
+            //         timeInput.value,
+            //         ul.innerHTML,
+            //         ol.innerHTML
+            //     )
+            //     addNameToList(nameInputValue);
+            //     createCategoryHtml(categoryInputValue);
+                
+            // }
 
-        const primaryTabList = [];
-        const primaryButtons = document.getElementsByClassName('tablink');
-        if (primaryButtons.innerHTML == categoryInputValue.toLowerCase()) {
-            return;
-        } else {
-            const result = createCategoryHtml(categoryInputValue);
-            primaryTabList.append(result);
-        }
-
-        //rendertest for primary tabs
-        const result = primaryTabList.join("\n");
-        primaryTabs.innerHTML = result;
-        
-
-        //Calling render, save and form reset
-        NewRecipe.render(categoryInputValue);
-        NewRecipe.save();
-        formReset();
-        document.getElementById("collapse-form").style.display = "none";
+        NewRecipe.addRecipe(
+            nameInput.value,
+            categoryInput.value,
+            timeInput.value,
+            ul.innerHTML,
+            ol.innerHTML
+        );
     }
+
+    // const primaryTabList = [];
+    // const primaryButtons = document.getElementsByClassName('tablink');
+    // if (primaryButtons.innerHTML == categoryInputValue.toLowerCase()) {
+    //     return;
+    // } else {
+    //     const result = createCategoryHtml(categoryInputValue);
+    //     primaryTabList.append(result);
+    // }
+
+    //rendertest for primary tabs
+    // const result = primaryTabList.join("\n");
+    // primaryTabs.innerHTML = result;
+    
+
+    //Calling render, save and form reset
+    NewRecipe.render(categoryInputValue);
+    NewRecipe.save();
+    formReset();
+    document.getElementById("collapse-form").style.display = "none";
 };
 
 //Submit Form Event Listener
