@@ -37,6 +37,15 @@ body {
     height: 100vh;
     padding: 50px 0px 45px 50px;
 }
+.default-recipe-image-div {
+    max-width: 710px;
+    max-height: 821px;
+    overflow: hidden;
+    position: absolute;
+    right: 760px;
+    top: 61px;
+    display: block;
+}
 
 /* Add Recipe Button Styling */
 #addRecipeBtn {
@@ -49,8 +58,34 @@ body {
     background-color: none !important;
 }
 button img {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
+}
+/* Add Your Recipe Form Styling */
+#collapse-form {
+    width: 500px;
+    position: absolute;
+    right: 290px;
+    top: 200px;
+    z-index: 4;
+    border: none !important;
+}
+#ins-row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#ing-row {
+    margin-top: 15px;
+}
+#dynamic-list {
+    margin: 15px 0px 0px 20px;
+}
+#dynamic-list-2 {
+    margin: 15px 0px 0px 20px;
+}
+.errorMsg {
+    font-size: 0.83rem;
+    font-family: 'Varela Round', sans-serif;
 }
 
 /* navbar styling */
@@ -76,11 +111,12 @@ h1 {
     display: inline-block;
     margin-top: 0px !important;
     position: fixed;
+    z-index: 5;
 }
 #primary-tabs {
     margin-top: 10px;
     overflow-y: auto;
-    z-index: 3;
+    z-index: 5;
 }
 #blank {
     height: 260px;
@@ -90,7 +126,7 @@ h1 {
     left: 130px;
     height: 100vh;
     bottom: 0;
-    z-index: 2;
+    z-index: 4;
 }
 #secondary-tabs{
     background-color: rgb(223, 223, 223);
@@ -123,6 +159,10 @@ h1 {
 .text-centered-div {
     display: flex;
     justify-content: center;
+}
+
+.form-control {
+    border: solid grey 1px !important;
 }
 
 h2 {

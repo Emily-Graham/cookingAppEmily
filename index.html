@@ -16,7 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,400;0,700;1,600&family=Varela+Round&display=swap" rel="stylesheet">
     <!-- JavaScript link -->
+    <script src="./javaScript/recipeManager.js" defer></script>
     <script src="./javaScript/index.js" defer></script>
+    
 </head>
 
 <!-- webApp -->
@@ -27,8 +29,8 @@
             <h1  class="text-centered-div">Cook<br>Book<br>Nook.</h1>
         </div>
         <div id="primary-tabs">
-            <button class="w3-bar-item w3-button tablink" onclick="openRecipe(event, 'Desserts')">Desserts</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openRecipe(event, 'Pasta')">Pasta</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'Desserts')">Desserts</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openSecondaryTabs(event, 'Pasta')">Pasta</button>
         </div>
     </nav>
     <div id="secondary-nav">
@@ -46,54 +48,66 @@
         <div id="leftpage-div">
             <img id="left-page" src="images/left-page.png" />
         </div>
+        <div class="default-recipe-image-div">
+            <img class="recipe-image" src="images/three-peach-sorbet.jpg" />
+        </div>
         <div id="right-page-div">
-            <h4 class="time">50 min</h4>
             <img id="time-ribbon" src="images/time-ribbon.png " />
             <img id="right-page" src="images/right-page.png"/>
         </div>
     </div>
-    <button id="addRecipeBtn">
+    <button id="addRecipeBtn" onclick="toggle()">
         <img src="./images/add-button.jpg"/>
     </button>
     <!-- Adding a task form -->
-    <div class="collapse row border mb-5 " id="collapseform">
-        <h3 class="text-center">Add Your Recipe</h3>
+    <!-- collapsable form -->
+    <div class="collapse row border mb-5 " id="collapse-form">
+        <h2 class="text-center">Add Your Recipe</h2>
+        <br>
         <form>
             <div class="mb-3">
-                <input aria-label="Recipe Name" type="text" class="form-control" id="name" placeholder="Recipe Name" />
-                <span id="errMsgName" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="assigned" placeholder="Assigned To" />
-                <span id="errMsgAssign" style="color: red"></span>
+                <input id="recipe-name-input" aria-label="Recipe Name" type="text" class="form-control" placeholder="Recipe Name *" />
+                <span id="errMsgName" class="errorMsg" style="color: #C71717"></span>
             </div>
             <div class="row" id="smallrow">
                 <div class="col-6">
-                    <input type="date" class="form-control" id="date" placeholder="Due Date" />
-                    <span id="errMsgDate" style="color: red"></span>
+                    <input id="category-input" type="text" class="form-control" placeholder="Recipe Category *" />
+                    <span id="errMsgCategory" class="errorMsg" style="color: #C71717"></span>
                 </div>
                 <div class="col-6">
-                    <select id="status" class="form-select" aria-label="dropdown status selection">
-                   <option selected>To Do</option>
-                   <option>In Progress</option>
-                   <option>Review</option>
-                   <option>Done</option>
-                   </select>
-                    <span id="errMsgSelect"></span>
+                    <input id="time-input" type="text" class="form-control"  placeholder="Time To Prepare" />
                 </div>
             </div>
-            <div class="mb-3">
-                <textarea class="form-control" id="description" placeholder="Task Description"></textarea>
-                <span id="errMsgDes" style="color: red"></span>
+            <ul id="dynamic-list" style="display:none"></ul>
+            <div id="ing-row" class="row">
+                
+                <div class="col-9">
+                    <input id="ingredients-input" aria-label="Ingredients" type="text" class="form-control" placeholder="Ingredients *"/>
+                    <span id="errMsgIngredients" class="errorMsg" style="color: #C71717"></span>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-success" onclick="addItem()">add item</button>
+                </div>
+            </div>
+            <ol id="dynamic-list-2" style="display:none"></ol>
+            <div id="ins-row" class="row">
+                
+                <div class="col-10">
+                    <input id="instructions-input" aria-label="Instructions" type="text" class="form-control" placeholder="Add A Step"/>
+                    <span id="errMsgInstructions" class="errorMsg" style="color: #C71717"></span>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-success" onclick="addInstructions()">add</button>
+                </div>
             </div>
             <button id="btnSub" type="button" class="btn btn-primary">
-                Add Task
+                Add Recipe
             </button>
         </form>
     </div>
     
     <!-- div for recipe-sets -->
-    <div id="card-container">
+    <div id="recipe-container">
         <!-- <div id="id_0" class="recipe-set">
             <div class="recipe-image-div">
                 <img class="recipe-image" src="images/sobaSalad.jpg" />
