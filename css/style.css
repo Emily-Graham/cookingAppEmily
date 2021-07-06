@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border: red solid 1px; */
+}
+
+body {
+
+    display: flex;
+    border: green solid 1px;
+}
+
+/* Add Recipe Button Styling */
+#addRecipeBtn {
+    font-family: 'Josefin Slab', serif !important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none !important;
+    color: none !important;
+    background-color: none !important;
+}
+button img {
+    width: 80px;
+}
+
+/* navbar styling */
+/* logo */
+#logo {
+    width: 100%;
+}
+/* title */
+#title {
+    background-color: lightgrey !important;
+    padding: 18px 0px 11px 0px !important;
+}
+h1 {
+    font-family: 'Josefin Slab', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.5rem !important;
+    
+}
+/* navbar */
+#navbar {
+    background-color: rgb(223, 223, 223);
+    width: 130px;
+    display: inline-block;
+    margin-top: 0px !important;
+    position: absolute;
+}
+#primary-tabs {
+    margin-top: 10px;
+    overflow-y: auto;
+}
+#blank {
+    height: 260px;
+}
+#secondary-nav {
+    position: relative;
+    left: 130px;
+    height: 100vh;
+    bottom: 0;
+}
+#secondary-tabs{
+    background-color: rgb(223, 223, 223);
+    height: calc(100% - 260px);
+    overflow-y: auto;
+}
+.recipe-name {
+    width: 250px;
+}
+/* navbar scrolling */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* class styling */
+.text-centered-div {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-family: 'Josefin Slab', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.5rem !important;
+}
+
+h4 {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1rem !important;
+}
+
+.selected-ribbon {
+    color:#fff!important;
+    background-image: url(../images/selected-ribbon.png) !important;
+}
